@@ -23,24 +23,29 @@ output = ""
 for animal in animals_data:
     output += '<li class="cards__item">\n'
 
+    # Name als Titel
     if 'name' in animal:
-        output += f'Name: {animal["name"]}<br>\n'
+        output += f'  <div class="card__title">{animal["name"]}</div>\n'
+
+    # Details in einem <p class="card__text"> mit <strong> Labels
+    output += '  <p class="card__text">\n'
 
     if 'characteristics' in animal and 'diet' in animal['characteristics']:
-        output += f'Diet: {animal["characteristics"]["diet"]}<br>\n'
+        output += f'    <strong>Diet:</strong> {animal["characteristics"]["diet"]}<br/>\n'
 
     if 'locations' in animal:
-        output += f'Location: {animal["locations"][0]}<br>\n'
+        output += f'    <strong>Location:</strong> {animal["locations"][0]}<br/>\n'
 
     if 'characteristics' in animal and 'type' in animal['characteristics']:
-        output += f'Type: {animal["characteristics"]["type"]}<br>\n'
+        output += f'    <strong>Type:</strong> {animal["characteristics"]["type"]}<br/>\n'
 
+    output += '  </p>\n'
     output += '</li>\n\n'
 
 # 3. __REPLACE_ANIMALS_INFO__ durch den erzeugten String ersetzen
 final_html = template.replace('__REPLACE_ANIMALS_INFO__', output)
 
-# 4. In animals.html schreiben
+# 4. In animals.html schreiben (WICHTIG: encoding='utf-8')
 with open('animals.html', 'w', encoding='utf-8') as f:
     f.write(final_html)
 
