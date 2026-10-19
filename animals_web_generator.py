@@ -22,36 +22,31 @@ def serialize_animal(animal_obj):
     if 'name' in animal_obj:
         output += f'  <div class="card__title">{animal_obj["name"]}</div>\n'
 
-    # Details in einem <p class="card__text"> mit <strong> Labels
-    output += '  <p class="card__text">\n'
+    # Details in einem <div class="card__text"> mit innerer <ul>
+    output += '  <div class="card__text">\n'
+    output += '    <ul class="animal-details">\n'
 
-    # Grundlegende Felder
     if 'characteristics' in animal_obj and 'diet' in animal_obj['characteristics']:
-        output += f'    <strong>Diet:</strong> {animal_obj["characteristics"]["diet"]}<br/>\n'
+        output += f'      <li><strong>Diet:</strong> {animal_obj["characteristics"]["diet"]}</li>\n'
 
     if 'locations' in animal_obj:
-        output += f'    <strong>Location:</strong> {animal_obj["locations"][0]}<br/>\n'
+        output += f'      <li><strong>Location:</strong> {animal_obj["locations"][0]}</li>\n'
 
     if 'characteristics' in animal_obj and 'type' in animal_obj['characteristics']:
-        output += f'    <strong>Type:</strong> {animal_obj["characteristics"]["type"]}<br/>\n'
+        output += f'      <li><strong>Type:</strong> {animal_obj["characteristics"]["type"]}</li>\n'
 
-    # Bonus-Felder
+    # Bonus-Felder (optional)
     if 'characteristics' in animal_obj and 'lifespan' in animal_obj['characteristics']:
-        output += f'    <strong>Lifespan:</strong> {animal_obj["characteristics"]["lifespan"]}<br/>\n'
+        output += f'      <li><strong>Lifespan:</strong> {animal_obj["characteristics"]["lifespan"]}</li>\n'
 
     if 'characteristics' in animal_obj and 'top_speed' in animal_obj['characteristics']:
-        output += f'    <strong>Top Speed:</strong> {animal_obj["characteristics"]["top_speed"]}<br/>\n'
+        output += f'      <li><strong>Top Speed:</strong> {animal_obj["characteristics"]["top_speed"]}</li>\n'
 
     if 'characteristics' in animal_obj and 'habitat' in animal_obj['characteristics']:
-        output += f'    <strong>Habitat:</strong> {animal_obj["characteristics"]["habitat"]}<br/>\n'
+        output += f'      <li><strong>Habitat:</strong> {animal_obj["characteristics"]["habitat"]}</li>\n'
 
-    if 'characteristics' in animal_obj and 'weight' in animal_obj['characteristics']:
-        output += f'    <strong>Weight:</strong> {animal_obj["characteristics"]["weight"]}<br/>\n'
-
-    if 'characteristics' in animal_obj and 'slogan' in animal_obj['characteristics']:
-        output += f'    <strong>Fun Fact:</strong> {animal_obj["characteristics"]["slogan"]}<br/>\n'
-
-    output += '  </p>\n'
+    output += '    </ul>\n'
+    output += '  </div>\n'
     output += '</li>\n\n'
 
     return output
@@ -59,25 +54,20 @@ def serialize_animal(animal_obj):
 
 def main():
     """Hauptfunktion: Lädt Daten und Template, generiert HTML"""
-    # Daten und Template laden
     animals_data = load_data('animals_data.json')
     template = load_template('animals_template.html')
 
-    # HTML für alle Tiere generieren
     output = ''
     for animal_obj in animals_data:
         output += serialize_animal(animal_obj)
 
-    # Platzhalter ersetzen
     final_html = template.replace('__REPLACE_ANIMALS_INFO__', output)
 
-    # In animals.html schreiben
     with open('animals.html', 'w', encoding='utf-8') as f:
         f.write(final_html)
 
     print("HTML-Datei wurde generiert: animals.html")
 
 
-# Skript ausführen
 if __name__ == '__main__':
     main()

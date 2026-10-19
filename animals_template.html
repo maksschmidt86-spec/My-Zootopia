@@ -9,7 +9,6 @@
         @gray-lighter:              #ececec;
         @gray-lightest:             lighten(@gray-lighter,4%);
 
-
         html {
           background-color: #ffe9e9;
         }
@@ -62,6 +61,28 @@
           font-size: 0.95rem;
           line-height: 2;
           margin-bottom: 1.25rem;
+        }
+
+        /* NEU: CSS für die innere Liste */
+        .animal-details {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .animal-details li {
+            padding: 4px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .animal-details li:last-child {
+            border-bottom: none;
+        }
+
+        .animal-details strong {
+            color: #696969;
+            display: inline-block;
+            min-width: 100px;
         }
         </style>
     </head>
