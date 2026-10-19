@@ -25,6 +25,7 @@ def serialize_animal(animal_obj):
     # Details in einem <p class="card__text"> mit <strong> Labels
     output += '  <p class="card__text">\n'
 
+    # Grundlegende Felder
     if 'characteristics' in animal_obj and 'diet' in animal_obj['characteristics']:
         output += f'    <strong>Diet:</strong> {animal_obj["characteristics"]["diet"]}<br/>\n'
 
@@ -33,6 +34,22 @@ def serialize_animal(animal_obj):
 
     if 'characteristics' in animal_obj and 'type' in animal_obj['characteristics']:
         output += f'    <strong>Type:</strong> {animal_obj["characteristics"]["type"]}<br/>\n'
+
+    # Bonus-Felder
+    if 'characteristics' in animal_obj and 'lifespan' in animal_obj['characteristics']:
+        output += f'    <strong>Lifespan:</strong> {animal_obj["characteristics"]["lifespan"]}<br/>\n'
+
+    if 'characteristics' in animal_obj and 'top_speed' in animal_obj['characteristics']:
+        output += f'    <strong>Top Speed:</strong> {animal_obj["characteristics"]["top_speed"]}<br/>\n'
+
+    if 'characteristics' in animal_obj and 'habitat' in animal_obj['characteristics']:
+        output += f'    <strong>Habitat:</strong> {animal_obj["characteristics"]["habitat"]}<br/>\n'
+
+    if 'characteristics' in animal_obj and 'weight' in animal_obj['characteristics']:
+        output += f'    <strong>Weight:</strong> {animal_obj["characteristics"]["weight"]}<br/>\n'
+
+    if 'characteristics' in animal_obj and 'slogan' in animal_obj['characteristics']:
+        output += f'    <strong>Fun Fact:</strong> {animal_obj["characteristics"]["slogan"]}<br/>\n'
 
     output += '  </p>\n'
     output += '</li>\n\n'
