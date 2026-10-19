@@ -3,3 +3,7 @@ __pycache__/
 *pyc
 .venv/
 venv/
+main.py
+pyproject.toml
+uv.lock
+.venv/
